@@ -4,12 +4,12 @@ from torch_scatter import scatter_mean
 from tqdm.auto import tqdm
 import sys
 from utils_.chem import BOND_TYPES
-from models.epsnet.diffusion import get_timestep_embedding, get_beta_schedule
-from models.epsnet.common import MultiLayerPerceptron, assemble_atom_pair_feature, _extend_to_radius_graph
+from models.net.diffusion import get_timestep_embedding, get_beta_schedule
+from models.net.common import MultiLayerPerceptron, assemble_atom_pair_feature, _extend_to_radius_graph
 from models.encoder.schnet import SchNetEncoder
 from models.encoder.edge import get_edge_encoder
 from models.encoder.EGNN_ import  EGNNSparseNetwork
-from models.epsnet.geometry import get_distance, eq_transform
+from models.net.geometry import get_distance, eq_transform
 
 
 class MGD(nn.Module):
@@ -590,4 +590,5 @@ def center_pos(pos, batch):
 def clip_norm(vec, limit, p=2):
     norm = torch.norm(vec, dim=-1, p=2, keepdim=True)
     denom = torch.where(norm > limit, limit / norm, torch.ones_like(norm))
+
     return vec * denom
