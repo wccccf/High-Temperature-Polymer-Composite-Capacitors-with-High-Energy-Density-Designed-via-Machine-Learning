@@ -8,7 +8,7 @@ from torch_geometric.utils import to_dense_adj, dense_to_sparse
 from math import pi as PI
 
 from utils_.chem import BOND_TYPES
-from models.epsnet.common import MeanReadout, SumReadout, MultiLayerPerceptron
+from models.net.common import MultiLayerPerceptron
 from models.encoder.schnet import GaussianSmearing
 
 
@@ -71,3 +71,4 @@ def get_edge_encoder(config):
         return GaussianSmearingEdgeEncoder(config['hidden_dim'] // 2, cutoff=config['cutoff'])
     else:
         raise NotImplementedError('Unknown edge encoder: %s' % config['edge_encoder'])
+
