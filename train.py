@@ -184,7 +184,7 @@ if __name__ == '__main__':
 
     # Build model
     logger.info('Building model...')
-    model = MDMFullDP(config.model).to(device)
+    model = MGD(config.model).to(device)
     # print(f"Model context: {model.context}")  
     # print(f"config context: {config.context}")
 
@@ -213,4 +213,5 @@ if __name__ == '__main__':
                     'avg_val_loss': avg_train_loss,
                 }, ckpt_path)
             logger.info(f'Model checkpoint saved at Iter {it}')
+
             best_train_loss = avg_train_loss
